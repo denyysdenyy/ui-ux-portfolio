@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "swiper/css";
 
 @theme inline {
   --color-background: #000000;
@@ -15,4 +16,19 @@ body {
 }
 *{
   font-family: var(--font-sans);
+}
+
+.memes-swiper {
+  margin-left: 0;
+  margin-right: min(0px, calc((var(--width-container) - 100vw) / 2));
+  width: auto;
+}
+
+.memes-swiper .swiper-slide {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.memes-swiper .swiper-slide-active {
+  opacity: 1;
 }
