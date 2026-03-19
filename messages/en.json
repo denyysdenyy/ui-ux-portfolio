@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "me": "About me",
+    "cases": "Cases",
+    "questions": "Questions",
+    "reviews": "Reviews",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title1": "Hey!",
+    "title2": "I’m your UI/UX designer",
+    "subtitle1": "I turn complex ideas into understandable products.",
+    "subtitle2": "I design the customer journey: from the first click to a successful purchase",
+    "button": "Discuss the project"
+  }
+}
