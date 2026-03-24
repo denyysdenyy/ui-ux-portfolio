@@ -1,4 +1,4 @@
-import { client } from './client'
+import { client } from './lib/client'
 
 export async function getWorks() {
   return await client.fetch(`

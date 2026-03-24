@@ -13,8 +13,6 @@
 body {
   background: #000000;
   color: var(--color-foreground);
-}
-*{
   font-family: var(--font-sans);
 }
 
@@ -48,5 +46,10 @@ body {
   section.questions {
     margin-bottom: 0;
   }
-  
+
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 }
