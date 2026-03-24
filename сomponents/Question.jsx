@@ -61,29 +61,29 @@ const questions = [
 
 const Question = () => {
   return (
-    <section>
+    <section className="questions">
       <Container>
         <Title maxWidth={433}>
           Часті <Pink>запитання</Pink>
         </Title>
-        <div className="flex flex-col gap-[30px] py-[20px]">
+        <div className="flex flex-col gap-[clamp(15px,2vw,30px)] py-[20px]">
           {questions.map((card) => {
             const isKarina = card.author === "Karina";
             return (
               <div key={card.id}>
                 <div
-                  className={`flex gap-[30px] items-center ${isKarina ? "self-end flex-row-reverse" : ""}`}
+                  className={`flex gap-[clamp(10px,2vw,30px)] items-end ${isKarina ? "self-end flex-row-reverse" : ""}`}
                 >
                   <Image
                     alt={isKarina ? "Karina" : "Client"}
                     src={isKarina ? karinaImg : clientImg}
-                    className="shrink-0"
+                    className="shrink-0 w-[clamp(50px,6vw,100px)] h-[clamp(50px,6vw,100px)]"
                   />
                   <div
-                    className={`py-[30px] px-[40px] rounded-[30px] rounded-bl-[0] border border-[#363636] max-w-[1119px] w-[100%] ${isKarina ? "bg-white rounded-br-[0] rounded-bl-[30px]" : "bg-[#151515]"}`}
+                    className={`py-[clamp(15px,2vw,30px)] px-[clamp(15px,2.5vw,40px)] rounded-[clamp(15px,2vw,30px)] rounded-bl-[0] border border-[#363636] max-w-[1119px] w-[100%] ${isKarina ? "bg-white rounded-br-[0] rounded-bl-[clamp(15px,2vw,30px)]" : "bg-[#151515]"}`}
                   >
                     <p
-                      className={`font-medium text-[24px] ${isKarina ? "text-[#151515]" : ""}`}
+                      className={`font-medium text-[clamp(16px,1.8vw,24px)] ${isKarina ? "text-[#151515]" : ""}`}
                     >
                       {card.text}
                     </p>

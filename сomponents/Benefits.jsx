@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Title, { Pink } from "./UI/Title";
 import Container from "./Container";
 import Image from "next/image";
@@ -16,113 +16,130 @@ const cards = [
 
 const TOTAL = cards.length;
 
-const getPositionStyle = (pos) => ({
-  x: pos * 18,
-  y: pos * -10,
+const useScale = () => {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) setScale(0.42);
+      else if (w < 768) setScale(0.55);
+      else if (w < 1024) setScale(0.7);
+      else setScale(1);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return scale;
+};
+
+const getPositionStyle = (pos, s) => ({
+  x: pos * 18 * s,
+  y: pos * -10 * s,
   rotate: pos * 4,
   scale: 1 - pos * 0.05,
   zIndex: TOTAL - pos,
 });
 
-const BenefitCard = ({ card, cardIndex, scrollYProgress }) => {
+const BenefitCard = ({ card, cardIndex, scrollYProgress, scale }) => {
   const inputRange = [];
   const xVals = [], yVals = [], rotateVals = [];
   const scaleVals = [], zVals = [];
 
   const addPoint = (progress, pos) => {
-    // Не дублюємо однакові точки
     if (inputRange.includes(progress)) return;
-    const s = getPositionStyle(pos);
+    const st = getPositionStyle(pos, scale);
     inputRange.push(progress);
-    xVals.push(s.x);
-    yVals.push(s.y);
-    rotateVals.push(s.rotate);
-    scaleVals.push(s.scale);
-    zVals.push(s.zIndex);
+    xVals.push(st.x);
+    yVals.push(st.y);
+    rotateVals.push(st.rotate);
+    scaleVals.push(st.scale);
+    zVals.push(st.zIndex);
   };
 
   const addArc = (progress) => {
     if (inputRange.includes(progress)) return;
     inputRange.push(progress);
-    xVals.push(-280);
-    yVals.push(-150);
+    xVals.push(-280 * scale);
+    yVals.push(-150 * scale);
     rotateVals.push(-18);
     scaleVals.push(0.82);
     zVals.push(TOTAL + 1);
   };
 
-  // Явно починаємо з 0
   addPoint(0, cardIndex);
 
-  // Фаза 1: картка рухається вперед поки виходять попередні
   for (let j = 0; j <= cardIndex; j++) {
     addPoint(j / TOTAL, cardIndex - j);
   }
 
-  // Дуга — вихід
   addArc((cardIndex + 0.5) / TOTAL);
-
-  // Приземлення ззаду
   addPoint((cardIndex + 1) / TOTAL, TOTAL - 1);
 
-  // Фаза 2: знову рухається вперед поки виходять наступні
   for (let j = cardIndex + 2; j <= TOTAL; j++) {
     addPoint(j / TOTAL, TOTAL - 1 - (j - cardIndex - 1));
   }
 
-  // Явно закінчуємо на 1
   addPoint(1, cardIndex);
 
   const x = useTransform(scrollYProgress, inputRange, xVals);
   const y = useTransform(scrollYProgress, inputRange, yVals);
   const rotate = useTransform(scrollYProgress, inputRange, rotateVals);
-  const scale = useTransform(scrollYProgress, inputRange, scaleVals);
+  const motionScale = useTransform(scrollYProgress, inputRange, scaleVals);
   const zIndex = useTransform(scrollYProgress, inputRange, zVals);
 
   return (
     <motion.div
       style={{
-        x, y, rotate, scale, zIndex,
-        opacity: 1, // статичний — useTransform не торкається
+        x, y, rotate, scale: motionScale, zIndex,
+        opacity: 1,
         position: "absolute",
         top: 0,
         left: 0,
       }}
-      className="border-[#363636] bg-[#151515] rounded-[20px] border-2 w-[700px] p-[60px]"
+      className="border-[#363636] bg-[#151515] rounded-[20px] border-2 w-full p-[clamp(25px,4vw,60px)]"
     >
-      <div className="bg-secondary p-[32.5px] inline-flex rounded-full mb-[40px]">
+      <div className="bg-secondary p-[clamp(16px,2.5vw,32.5px)] inline-flex rounded-full mb-[clamp(20px,3vw,40px)]">
         <Image src={card.svg} alt={card.alt} />
       </div>
-      <h3 className="text-[43px] font-semibold">{card.text}</h3>
+      <h3 className="text-[clamp(22px,3.2vw,43px)] font-semibold">{card.text}</h3>
     </motion.div>
   );
 };
 
 const Benefits = () => {
   const containerRef = useRef(null);
+  const scale = useScale();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
+  const cardWidth = Math.round(700 * scale);
+  const cardHeight = Math.round(500 * scale);
+  const containerHeight = Math.round(700 * scale);
+
   return (
     <section ref={containerRef} style={{ height: `calc(100vh + ${TOTAL * 50}vh)` }}>
       <div className="sticky top-0 h-screen flex items-center">
         <Container>
           <div
-            className="flex justify-between items-center relative"
-            style={{ height: "700px" }}
+            className="flex flex-col lg:flex-row justify-between items-center relative gap-[clamp(30px,4vw,0px)]"
+            style={{ height: `${containerHeight}px` }}
           >
-            <Title maxWidth={580}><Pink>Чому</Pink> обирають мене</Title>
+            <Title maxWidth={580}><Pink>Чому клієнти</Pink> обирають мене</Title>
 
-            <div className="relative" style={{ width: "700px", height: "500px" }}>
+            <div className="relative shrink-0" style={{ width: `${cardWidth}px`, height: `${cardHeight}px` }}>
               {cards.map((card, index) => (
                 <BenefitCard
                   key={card.id}
                   card={card}
                   cardIndex={index}
                   scrollYProgress={scrollYProgress}
+                  scale={scale}
                 />
               ))}
             </div>

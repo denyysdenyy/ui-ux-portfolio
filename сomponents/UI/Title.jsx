@@ -7,7 +7,7 @@ export const Pink = ({ children }) => (
 const Title = ({ children, maxWidth, className }) => {
   return (
     <h2
-      className={`font-[800] italic text-[96px] ${className || ""}`}
+      className={`font-[800] italic text-[clamp(35px,6vw,96px)] ${className || ""}`}
       style={{ maxWidth: maxWidth ? `${maxWidth}px` : undefined }}
     >
       {children}

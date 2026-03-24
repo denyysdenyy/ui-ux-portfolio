@@ -39,8 +39,8 @@ const Works = ({ works = [] }) => {
       <Container>
         <div>
           {/* Заголовок + фильтры */}
-          <div className="flex items-center justify-between mb-[60px]">
-            <h2 className="font-extrabold italic text-[72px] text-primary leading-[0.9] tracking-[-1.44px]">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-[20px] mb-[clamp(30px,4vw,60px)]">
+            <h2 className="font-extrabold italic text-[clamp(35px,5vw,72px)] text-primary leading-[0.9] tracking-[-1.44px]">
               Кейси
             </h2>
             <WorksFilter active={activeFilter} onChange={handleFilterChange} />
@@ -48,7 +48,7 @@ const Works = ({ works = [] }) => {
 
           {/* Сетка карточек с анимацией */}
           <div
-            className={`grid grid-cols-3 gap-x-[4px] gap-y-[20px] transition-opacity duration-200 ${
+            className={`grid grid-cols-[repeat(auto-fit,minmax(358px,1fr))] gap-x-[4px] gap-y-[20px] transition-opacity duration-200 ${
               isAnimating ? "opacity-0" : "opacity-100"
             }`}
           >
@@ -62,7 +62,7 @@ const Works = ({ works = [] }) => {
             <div className="flex justify-center mt-[60px]">
               <button
                 onClick={handleShowMore}
-                className="text-[32px] font-semibold text-primary/50 underline hover:text-primary transition-colors duration-200 cursor-pointer"
+                className="text-[clamp(20px,2.5vw,32px)] font-semibold text-primary/50 underline hover:text-primary transition-colors duration-200 cursor-pointer"
               >
                 Показати ще
               </button>

@@ -11,10 +11,10 @@ const Footer = () => {
   return (
     <footer className="bg-[#151515] py-[38px]">
       <Container>
-        <div className="flex items-center justify-between">
+        <Link href={'#'} className="flex items-center justify-center lg:justify-between">
           <Image alt="logo" src={logo} />
-          <nav>
-            <ul className="flex gap-[85px] [&>li]:text-primary [&>li]:hover:text-secondary [&>li]:duration-200 [&>li]:ease-in-out [&>li]:text-[25px]">
+          <nav className="hidden lg:block">
+            <ul className="flex gap-[clamp(30px,4vw,85px)] [&>li]:text-primary [&>li]:hover:text-secondary [&>li]:duration-200 [&>li]:ease-in-out [&>li]:text-[clamp(16px,1.5vw,25px)]">
               <li>
                 <Link href={"#"}>{t("me")}</Link>
               </li>
@@ -32,8 +32,8 @@ const Footer = () => {
               </li>
             </ul>
           </nav>
-          <div></div>
-        </div>
+          <div className="hidden lg:block"></div>
+        </Link>
       </Container>
     </footer>
   );

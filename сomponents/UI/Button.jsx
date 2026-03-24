@@ -4,7 +4,7 @@ const Button = () => {
   return (
     <Link
       href=""
-      className="bg-secondary inline-flex  py-[32px] px-[60.5px] text-[32px] font-[600] rounded-[100px] px-[45.5px]  border-[2px] transition-all duration-300 border-secondary hover:bg-transparent  hover:text-secondary "
+      className="bg-secondary inline-flex py-[clamp(18px,2vw,32px)] px-[clamp(30px,4vw,60.5px)] text-[clamp(16px,2vw,32px)] font-[600] rounded-[100px] border-[2px] transition-all duration-300 border-secondary hover:bg-transparent hover:text-secondary"
     >
       Обговорити проект
     </Link>

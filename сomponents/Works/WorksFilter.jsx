@@ -10,12 +10,12 @@ const filters = [
 
 const WorksFilter = ({ active, onChange }) => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
       {filters.map((filter) => (
         <button
           key={filter.value}
           onClick={() => onChange(filter.value)}
-          className={`px-[26px] py-[14px] rounded-full text-[20px] font-semibold transition-colors duration-200 cursor-pointer
+          className={`px-[clamp(16px,2vw,26px)] py-[clamp(10px,1.2vw,14px)] rounded-full text-[clamp(14px,1.5vw,20px)] font-semibold transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0
             ${active === filter.value
               ? "bg-secondary text-white"
               : "text-primary hover:text-secondary"

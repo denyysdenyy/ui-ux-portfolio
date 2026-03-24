@@ -66,12 +66,13 @@ const Reviews = () => {
   return (
     <section className="flex flex-col  items-center">
       <Container>
-        <Title maxWidth={587}>
+        <Title maxWidth={587} className="  top-[360px] relative ">
+          {" "}
           <Pink>Що кажуть </Pink> клієнти про мене
         </Title>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px] items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px] items-start mb-[200px] ">
           {/* Колонка 1 */}
-          <div className="flex flex-col gap-[20px] pt-[390px]">
+          <div className="flex flex-col gap-[20px] mt-[390px]">
             {[reviews[0], reviews[1], reviews[2]].map((review) => (
               <div
                 className={`rounded-[27px] p-[40px] ${review.isPink ? "bg-secondary" : "bg-[#fff]"}`}
@@ -86,7 +87,7 @@ const Reviews = () => {
             ))}
           </div>
           {/* Колонка 2 */}
-          <div className="flex pt-[75px] flex-col gap-[20px]">
+          <div className="flex mt-[75px] flex-col gap-[20px]">
             {[reviews[3], reviews[4], reviews[5]].map((review) => (
               <div
                 className={`rounded-[27px] p-[40px] ${review.isPink ? "bg-secondary" : "bg-[#fff]"}`}

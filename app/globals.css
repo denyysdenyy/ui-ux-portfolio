@@ -43,6 +43,10 @@ body {
 
 @layer base {
   section {
-    margin-bottom: 300px;
+    margin-bottom: clamp(130px, 15vw, 300px);
   }
+  section.questions {
+    margin-bottom: 0;
+  }
+  
 }

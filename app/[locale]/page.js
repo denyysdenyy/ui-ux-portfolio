@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <Benefits />x
+      <Benefits />
       <Memes />
       <Works works={works} />
       <Question />

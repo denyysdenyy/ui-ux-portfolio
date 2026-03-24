@@ -20,18 +20,18 @@ const Contacts = () => {
         <Title>
           <Pink>Контакти</Pink>
         </Title>
-        <div className="flex gap-[21px]">
+        <div className="flex flex-col sm:flex-row gap-[21px]">
           {links.map((link) => (
             <Link
               key={link.id}
-              className="w-[100%] max-w-[566px] border border-[#363636] rounded-[20px] hover:border-secondary transition-all duration-300"
+              className="w-full sm:max-w-[566px] border border-[#363636] rounded-[20px] hover:border-secondary transition-all duration-300"
               href={link.link}
             >
-              <div className="bg-[#151515]  gap-[40px] rounded-[inherit] p-[60px] flex flex-col items-center ">
-                <div className="p-[40px] rounded-[100px] bg-secondary max-w-[165px]">
-                  <Image src={link.icon} alt="inst" />
+              <div className="bg-[#151515] gap-[clamp(20px,3vw,40px)] rounded-[inherit] p-[clamp(30px,4vw,60px)] flex flex-col items-center">
+                <div className="p-[clamp(20px,3vw,40px)] rounded-[100px] bg-secondary">
+                  <Image src={link.icon} alt="inst" className="w-[clamp(50px,5vw,85px)] h-[clamp(50px,5vw,85px)]" />
                 </div>
-                <h4 className=" font-semibold text-[36px]">{link.text}</h4>
+                <h4 className="font-semibold text-[clamp(20px,2.5vw,36px)]">{link.text}</h4>
               </div>
             </Link>
           ))}

@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef, useState } from "react";
-import Link from "next/link";
 import Container from "./Container";
 import Title, { Pink } from "./UI/Title";
+import Button from "./UI/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
@@ -68,8 +68,8 @@ const Memes = () => {
     >
       <div className="sticky top-0 h-screen flex items-center overflow-x-clip">
         <Container>
-          <div className="flex gap-[90px] flex-row-reverse">
-            <div className="flex flex-col gap-[60px] min-w-0 flex-1">
+          <div className="flex flex-col md:flex-row-reverse md:gap-[90px] gap-[40px]">
+            <div className="flex flex-col gap-[clamp(30px,4vw,60px)] min-w-0 flex-1">
               <Title>
                 Зі мною створювати цікаві рішення — <Pink>легше</Pink>
               </Title>
@@ -86,11 +86,11 @@ const Memes = () => {
               >
                 {cards.map((card) => (
                   <SwiperSlide key={card.id}>
-                    <div className="max-w-[595px] flex flex-col gap-[54px]">
-                      <h4 className="font-semibold text-[48px]">
+                    <div className="max-w-[595px] flex flex-col gap-[clamp(24px,3.5vw,54px)]">
+                      <h4 className="font-semibold text-[clamp(28px,3.5vw,48px)]">
                         {card.title}
                       </h4>
-                      <p className="font-medium text-[28px]">
+                      <p className="font-medium text-[clamp(18px,2vw,28px)]">
                         {card.subtitle}
                       </p>
                     </div>
@@ -100,7 +100,7 @@ const Memes = () => {
             </div>
             <video
               key={activeIndex}
-              className="rounded-[25px] object-cover h-[627px] w-[400px] shrink-0"
+              className="rounded-[25px] object-cover w-full md:w-[400px] h-[clamp(284px,40vw,627px)] shrink-0 self-center"
               autoPlay
               loop
               muted
@@ -109,13 +109,8 @@ const Memes = () => {
             />
           </div>
 
-          <div className="flex justify-center mt-[60px]">
-            <Link
-              href="#contact"
-              className="bg-secondary block py-[32px] px-[60.5px] text-[32px] font-[600] rounded-[100px] border-[2px] transition-all duration-300 border-secondary hover:bg-transparent hover:text-secondary"
-            >
-              Обговорити проєкт
-            </Link>
+          <div className="flex justify-center mt-[clamp(30px,4vw,60px)]">
+            <Button />
           </div>
         </Container>
       </div>
