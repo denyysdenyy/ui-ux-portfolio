@@ -1,9 +1,16 @@
 import React from "react";
 
-const Title = ({ title, pinkWord, maxWidth }) => {
+export const Pink = ({ children }) => (
+  <span className="text-[#f259ba]">{children}</span>
+);
+
+const Title = ({ children, maxWidth, className }) => {
   return (
-    <h2 className={"font-[800] text-[96px]"} style={{maxWidth:`${maxWidth}px`}}>
-      <span className="text-[#f259ba]">{pinkWord}</span> {title}
+    <h2
+      className={`font-[800] italic text-[96px] ${className || ""}`}
+      style={{ maxWidth: maxWidth ? `${maxWidth}px` : undefined }}
+    >
+      {children}
     </h2>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import Title from "./UI/Title";
+import Title, { Pink } from "./UI/Title";
 import Container from "./Container";
 import Image from "next/image";
 import starSvg from "../public/benefits/Star.svg";
@@ -107,14 +107,14 @@ const Benefits = () => {
   });
 
   return (
-    <div ref={containerRef} style={{ height: `calc(100vh + ${TOTAL * 50}vh)` }}>
+    <section ref={containerRef} style={{ height: `calc(100vh + ${TOTAL * 50}vh)` }}>
       <div className="sticky top-0 h-screen flex items-center">
         <Container>
           <div
             className="flex justify-between items-center relative"
             style={{ height: "700px" }}
           >
-            <Title pinkWord={"Чому"} maxWidth={580} title={"обирають мене"} />
+            <Title maxWidth={580}><Pink>Чому</Pink> обирають мене</Title>
 
             <div className="relative" style={{ width: "700px", height: "500px" }}>
               {cards.map((card, index) => (
@@ -129,7 +129,7 @@ const Benefits = () => {
           </div>
         </Container>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import Container from "./Container";
-import Title from "./UI/Title";
+import Title, { Pink } from "./UI/Title";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
@@ -62,7 +62,7 @@ const Memes = () => {
   });
 
   return (
-    <div
+    <section
       ref={containerRef}
       style={{ height: `calc(100vh + ${(cards.length - 1) * 100}vh)` }}
     >
@@ -70,10 +70,9 @@ const Memes = () => {
         <Container>
           <div className="flex gap-[90px] flex-row-reverse">
             <div className="flex flex-col gap-[60px] min-w-0 flex-1">
-              <Title
-                title={"Зі мною створювати цікаві рішення — "}
-                pinkWord={"легше"}
-              />
+              <Title>
+                Зі мною створювати цікаві рішення — <Pink>легше</Pink>
+              </Title>
 
               <Swiper
                 slidesPerView={1}
@@ -120,7 +119,7 @@ const Memes = () => {
           </div>
         </Container>
       </div>
-    </div>
+    </section>
   );
 };
 

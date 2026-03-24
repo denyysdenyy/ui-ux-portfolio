@@ -48,7 +48,7 @@ const Works = ({ works = [] }) => {
 
           {/* Сетка карточек с анимацией */}
           <div
-            className={`grid grid-cols-3 gap-[4px] transition-opacity duration-200 ${
+            className={`grid grid-cols-3 gap-x-[4px] gap-y-[20px] transition-opacity duration-200 ${
               isAnimating ? "opacity-0" : "opacity-100"
             }`}
           >

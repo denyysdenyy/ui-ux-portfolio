@@ -3,11 +3,13 @@ import React from "react";
 import Image from "next/image";
 import Header from "./Header/Header";
 import Link from "next/link";
-import imgTelegram from "../public/social/telegram.png";
-import imgInstagram from "../public/social/insta.png";
-import imgPhone from "../public/social/phone.png";
+import imgTelegram from "../public/social/telegram.svg";
+import imgInstagram from "../public/social/insta.svg";
+import imgPhone from "../public/social/phone.svg";
 import Container from "./Container";
 import { useTranslations } from "next-intl";
+import Button from "./UI/Button";
+import imgBg from '../public/img/bg-hero.png'
 
 const socials = [
   { id: 0, img: imgTelegram, alt: "Telegram", href: "#" },
@@ -19,11 +21,20 @@ const Hero = () => {
   const t = useTranslations("hero");
   return (
     <section className="relative bg-black overflow-hidden flex flex-col">
+      <div className="absolute inset-0 top-[120px] z-0 pointer-events-none">
+        <Image
+          src={imgBg}
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </div>
       <Header />
       <Container>
-        <div className="flex items-center justify-center relative">
+        <div className="flex items-center justify-center relative z-10">
           <div className="flex flex-col items-center">
-            <h1 className="font-semibold mb-[30px] text-[clamp(40px,8vw,120px)] z-10 leading-[1.2] tracking-[-0.05em] text-center text-primary">
+            <h1 className="font-extrabold mb-[30px] text-[clamp(40px,8vw,120px)] z-10 leading-[1.2] tracking-[-0.05em] text-center text-primary">
               {t("title1")} <br />
               {t("title2")}
             </h1>
@@ -31,21 +42,21 @@ const Hero = () => {
               {t("subtitle1")} <br />
               {t("subtitle2")}
             </p>
-            <Link
-              href="#"
-              className="bg-secondary block   py-[32px] px-[60.5px] text-[32px] font-[600] rounded-[100px] px-[45.5px]  border-[2px] transition-all duration-300 border-secondary hover:bg-transparent  hover:text-secondary "
-            >
-              Обговорити проект
-            </Link>
+            <Button />
           </div>
-          <div className="flex flex-col gap-[30px] absolute right-0">
+          <div className="flex flex-col gap-[30px] absolute right-0 top-[100px]">
             {socials.map((social) => (
               <Link
                 className="bg-black p-[20px]   border-2 border-transparent rounded-[100px] border- hover:border-secondary duration-300 transition-all"
                 key={social.id}
                 href={"#"}
               >
-                <Image alt={social.alt} src={social.img}></Image>
+                <Image
+                  width={30}
+                  height={30}
+                  alt={social.alt}
+                  src={social.img}
+                ></Image>
               </Link>
             ))}
           </div>

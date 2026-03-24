@@ -32,3 +32,17 @@ body {
 .memes-swiper .swiper-slide-active {
   opacity: 1;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  section {
+    margin-bottom: 300px;
+  }
+}

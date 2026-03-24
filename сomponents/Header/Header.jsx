@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <Container>
-      <div className="relative z-1 mt-[50px] mb-[15px] flex items-center">
+      <header className="relative z-1 mt-[50px] mb-[300px] flex items-center">
         <Link className="mr-[358px]" href={"#"}>
           <Image alt="logo" src={logo} />
         </Link>
@@ -35,7 +35,7 @@ const Header = () => {
           </ul>
         </nav>
         <LanguageSwitcher />
-      </div>
+      </header>
     </Container>
   );
 };
